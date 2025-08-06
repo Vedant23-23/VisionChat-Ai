@@ -1,0 +1,179 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Urbanist:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /**
+   * VisionChat AI Dark Theme Variables
+   * Tailwind CSS theme expects HSL values for solid colors and HSLA for transparent colors
+   */
+  :root {
+    /* Dark Theme Base Colors */
+    --background: 222 22% 7%;
+    --foreground: 0 0% 95%;
+
+    --card: 222 22% 10%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 222 22% 8%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 222 22% 15%;
+    --secondary-foreground: 0 0% 85%;
+
+    --muted: 222 22% 12%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 271 91% 65%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 222 22% 20%;
+    --input: 222 22% 15%;
+    --ring: 217 91% 60%;
+
+    --radius: 0.75rem;
+
+    /* Neon Accent Colors */
+    --neon-blue: 217 91% 60%;
+    --neon-purple: 271 91% 65%;
+    --neon-cyan: 189 94% 43%;
+    --neon-pink: 316 87% 68%;
+
+    /* Glass Effect Colors */
+    --glass-white: 0 0% 100%, 0.1;
+    --glass-dark: 222 22% 8%, 0.8;
+
+    /* Sidebar Colors */
+    --sidebar-background: 222 22% 8%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 222 22% 12%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 222 22% 20%;
+    --sidebar-ring: 217 91% 60%;
+  }
+
+  /* Keep light mode for fallback but default to dark */
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 271 91% 65%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 217 91% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: "Inter", "Urbanist", "Poppins", system-ui, sans-serif;
+  }
+
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--accent));
+  }
+
+  /* Custom Glassmorphism Utilities */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-card-dark {
+    background: rgba(34, 34, 40, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Neumorphic Effects */
+  .neomorphic {
+    background: hsl(var(--card));
+    box-shadow:
+      9px 9px 16px #0a0a0a,
+      -9px -9px 16px #1a1a1a;
+  }
+
+  .neomorphic-inset {
+    background: hsl(var(--muted));
+    box-shadow:
+      inset 6px 6px 12px #0a0a0a,
+      inset -6px -6px 12px #1a1a1a;
+  }
+
+  /* Neon Glow Effects */
+  .neon-blue {
+    box-shadow:
+      0 0 20px hsl(var(--neon-blue) / 0.5),
+      0 0 40px hsl(var(--neon-blue) / 0.3),
+      0 0 60px hsl(var(--neon-blue) / 0.1);
+  }
+
+  .neon-purple {
+    box-shadow:
+      0 0 20px hsl(var(--neon-purple) / 0.5),
+      0 0 40px hsl(var(--neon-purple) / 0.3),
+      0 0 60px hsl(var(--neon-purple) / 0.1);
+  }
+
+  .neon-text {
+    text-shadow:
+      0 0 10px currentColor,
+      0 0 20px currentColor,
+      0 0 30px currentColor;
+  }
+
+  /* Smooth Transitions */
+  .transition-all-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
